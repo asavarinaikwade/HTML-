@@ -59,3 +59,156 @@
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Solar System SVG</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+svg{
+    width:100vw;
+    height:100vh;
+}
+
+.orbit{
+    fill:none;
+    stroke:#444;
+    stroke-width:1;
+}
+
+.star{
+    fill:white;
+}
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 1000 1000">
+
+    <!-- Background stars -->
+    <g id="stars"></g>
+
+    <!-- Sun -->
+    <circle cx="500" cy="500" r="45" fill="gold">
+        <animate attributeName="r"
+                 values="42;48;42"
+                 dur="2s"
+                 repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Orbits -->
+    <circle class="orbit" cx="500" cy="500" r="80"/>
+    <circle class="orbit" cx="500" cy="500" r="120"/>
+    <circle class="orbit" cx="500" cy="500" r="170"/>
+    <circle class="orbit" cx="500" cy="500" r="230"/>
+    <circle class="orbit" cx="500" cy="500" r="300"/>
+
+    <!-- Mercury -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 500 500"
+            to="360 500 500"
+            dur="4s"
+            repeatCount="indefinite"/>
+        <circle cx="580" cy="500" r="6" fill="#aaa"/>
+    </g>
+
+    <!-- Venus -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 500 500"
+            to="360 500 500"
+            dur="7s"
+            repeatCount="indefinite"/>
+        <circle cx="620" cy="500" r="10" fill="#d9b38c"/>
+    </g>
+
+    <!-- Earth -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 500 500"
+            to="360 500 500"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <circle cx="670" cy="500" r="12" fill="deepskyblue"/>
+
+        <!-- Moon -->
+        <g>
+            <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 670 500"
+                to="360 670 500"
+                dur="2s"
+                repeatCount="indefinite"/>
+            <circle cx="690" cy="500" r="4" fill="#ddd"/>
+        </g>
+    </g>
+
+    <!-- Mars -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 500 500"
+            to="360 500 500"
+            dur="16s"
+            repeatCount="indefinite"/>
+        <circle cx="730" cy="500" r="9" fill="tomato"/>
+    </g>
+
+    <!-- Jupiter -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 500 500"
+            to="360 500 500"
+            dur="25s"
+            repeatCount="indefinite"/>
+        <circle cx="800" cy="500" r="22" fill="orange"/>
+    </g>
+
+</svg>
+
+<script>
+// Generate random stars
+const stars = document.getElementById("stars");
+
+for(let i=0;i<300;i++){
+    const star = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    star.setAttribute("cx", Math.random()*1000);
+    star.setAttribute("cy", Math.random()*1000);
+    star.setAttribute("r", Math.random()*2);
+
+    star.setAttribute("class", "star");
+
+    stars.appendChild(star);
+}
+</script>
+
+</body>
+</html>
